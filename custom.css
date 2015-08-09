@@ -1,0 +1,162 @@
+/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+.noscriptmsg {display:none;}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+/* Style for navBar on the top. */
+.navbar-default {
+  background-color: #27ae60;
+  border-color: #2ecc71;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #27ae60;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #2ecc71;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #27ae60;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #2ecc71;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #2ecc71;
+}
+.navbar-default .navbar-toggle {
+  border-color: #2ecc71;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #2ecc71;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #2ecc71;
+  }
+}
+
+
+/* Custom CSS. */
+body {
+    font-family: "Open Sans";
+    padding-top: 50px;
+}
+
+.navbar-custom {
+    margin-bottom: 0; 
+    font-family: 'NTR', sans-serif;
+    font-size: 120%;
+}
+
+.navbar-custom .navbar-brand {
+    font-size: 120%;
+}
+
+.container-fluid {
+    /* Override default TB. Allows navbar on top to take up entire width of scren. */
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.custom-panel {
+    color: #124e2b;
+    padding-top: 8em;
+    padding-bottom: 8em;
+}
+
+.custom-panel h1 {
+    font-size: 350%;
+}
+
+.custom-panel h3 {
+    font-size: 250%;
+}
+
+.custom-panel h5 {
+    font-size: 150%;
+}
+
+.custom-panel-green {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.custom-first-panel {
+    margin-top: 50px;
+}
+
+.custom-post, .custom-blog-post {
+    margin-top: 3%;
+}
+
+.custom-blog-info-container {
+    margin-left: 2%;
+}
+
+.custom-post-new, .custom-blog-new {
+    color: #3c2000;
+}
+
+.custom-post-reply {
+    border-left: 5px solid #12432b;
+}
+
+@media(max-width:991px) {
+    body {
+        font-size: 12px;
+    }
+}
+@media(min-width:992px) {
+    body {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html ng-app="openSourceApp">
+
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Set this for mobile devices -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script> <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!-- JQuery used for Twitter Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <!-- Twitter Bootstrap CSS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> <!-- Twitter Bootstrap JS -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'> <!-- Open Source Font -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> <!-- Font Awesome Icons -->
+        <link href='http://fonts.googleapis.com/css?family=NTR' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="custom.css">
+        <script src="script.js"></script> <!-- Custom JS script. -->
+    </head>
+
+    <noscript> <!-- If JS is disabled, the CSS below will run, causing everything inside "pagecontainer"
+                    to no appear and causing the "noscriptmsg" to appear. -->
+        <style type="text/css">
+            .pagecontainer {display:none;}
+            .noscriptmsg {display:block; color: white;}
+        </style>
+    </noscript>
+
+    <body>
+        <div class="noscriptmsg">
+            <p>Please enable your browser's JavaScript in order to view this website. 
+            If you do not know how to enable your browser's JavaScript, click 
+            <a href="https://www.google.ca/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8&client=ubuntu#q=how+to+enable+javascript+in+browser" class="link">here</a> 
+            to find out.</p>
+        </div>
+
+        <div class="pagecontainer">
+            <div class="container-fluid"> <!-- the "container" and "row" class are used for Bootstraps responsive layout. -->
+                <nav role="navigation" class="navbar navbar-default navbar-fixed-top navbar-custom">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+                    <div id="navbarCollapse" class="collapse navbar-collapse" ng-controller="NavTabController as ctrl">
+                        <ul class="nav navbar-nav">
+                            <li ng-class="{'active': ctrl.getTab()=='home'}"><a href="#" scroll-to-item scroll-to="#home" ng-click="ctrl.switchTab('home')">Home</a></li>
+                            <li ng-class="{'active': ctrl.getTab()=='about'}"><a href="#" scroll-to-item scroll-to="#about" ng-click="ctrl.switchTab('about')">About</a></li>
+                            <li ng-class="{'active': ctrl.getTab()=='blogs'}"><a href="#" scroll-to-item scroll-to="#blogs" ng-click="ctrl.switchTab('blogs', 'none')">Blogs</a></li>
+                            <li ng-class="{'active': ctrl.getTab()=='posts'}"><a href="#" scroll-to-item scroll-to="#posts" ng-click="ctrl.switchTab('posts')">Posts</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="home" class="container-fluid custom-panel custom-panel-green">
+                    <div class="text-center">
+                        <i class="fa fa-folder-open fa-5x"></i>
+                        <h1>Open Source App</h1>
+                        <h4>created using AngularJS and Twitter Bootstrap</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="about" class="container custom-panel">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <h3>About</h3>
+                            <p>This is a single page website created using AngularJS and Twitter Bootstrap.
+                               This website was created so that users can see a basic example of Twitter Bootstrap
+                               and AngularJS in use. The code can be found online (or you can use developer tools to
+                               see this websites code).</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+
+            <div id="blogs" class="container-fluid custom-panel custom-panel-green">
+                <div ng-controller="NavTabController as ctrl">
+                    <div ng-if="ctrl.getdropDown() =='createReply' || ctrl.getdropDown() == 'none'" ng-controller="BlogsController as blogCtrl">
+                        <div class="text-center">
+                            <h3>Below is an interface for a blog.</h3>
+                            <p>Sample text is being used for the blogs.<br />Click <a href="#" scroll-to-item scroll-to="#blogs" ng-click="ctrl.switchTab('blogs', 'create')"><strong>here</strong></a> to create a new blog. Note: the blog post you create will be deleted once the page is refreshed.</p>
+                        </div>
+                        <div class="custom-blog-post" ng-repeat="info in blogCtrl.getBlogs()">
+                                <div class="container" ng-class="{'custom-blog-new':info.new}">
+                                    <div class="col-lg-1">
+                                        <span class="fa-stack fa-3x">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-bookmark fa-stack-1x"></i>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-lg-10 custom-blog-info-container">
+                                        <p><strong><span ng-show="info.new">Successfully created a new blog post.</span></strong><br ng-show="info.new" />
+                                        <strong><span ng-bind="info.title"></span></strong><br />
+                                        <strong>created by: </strong> <span ng-bind="info.user"></span></p>
+                                        <p><span ng-bind="info.content"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div ng-if="ctrl.getdropDown() == 'create'" ng-controller="BlogsController as blogCtrl">
+                        <div class="text-center">
+                            <i class="fa fa-pencil-square-o fa-5x"></i>
+                        </div>
+                        <div class="container">
+                            <p>Fill in all the sections below to create a blog post.</p>
+                            <form name="createBlogForm" ng-submit="blogCtrl.add(blogCtrl.blog)">
+                                <div class="form-group">
+                                    <label for="inputTitle">Title</label>
+                                    <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="blogCtrl.blog.title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputContent">Content</label>
+                                    <input type="text" class="form-control" id="inputContent" placeholder="Content" ng-model="blogCtrl.blog.content" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputUsername">Username</label>
+                                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="blogCtrl.blog.user" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="createBlogForm.$invalid">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end blogs -->
+
+            <div id="posts" class="container custom-panel">
+                <div ng-controller="PostController as postCtrl">
+                    <div class="text-center">
+                        <h3>Below is an interface for a set of posts and replies.</h3>
+                        <p>Sample text is being used.</p>
+                        <p>Fill in all the sections below to create a regular post, or, reply to an existing post (existing posts can be seen below).</p>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <form name="createPostForm" ng-submit="postCtrl.add(postCtrl.post)">
+                                <div class="form-group">
+                                    <label for="inputUsername">Username</label>
+                                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="postCtrl.post.username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPost">Post</label>
+                                    <input type="text" class="form-control" id="inputPost" placeholder="Post" ng-model="postCtrl.post.post" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="createPostForm.$invalid">Create Post</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="custom-post" ng-repeat="info in postCtrl.getPosts() track by $index">
+                        <div class="row" ng-class="{'custom-post-new':info.new}">
+                            <div class="col-lg-1">
+                                <span class="fa-stack fa-3x">
+                                    <i class="fa fa-square-o fa-stack-2x"></i>
+                                    <i class="fa fa-user fa-stack-1x"></i>
+                                </span>
+                            </div>
+                            <div class="col-lg-11">
+                                <strong><span ng-show="info.new">Successfully created a new post.</span></strong><br ng-show="info.new" />
+                                <strong><span ng-bind="info.username"></span></strong><br />
+                                <span ng-bind="info.created | date:'MMMM dd yyyy'"></span>
+                                <p><span ng-bind="info.post"></span></p>
+                            </div>
+                        </div>
+                        <div class="row custom-post-reply-container" ng-repeat="replyInfo in info.replies">
+                            <div class="col-lg-offset-1 col-lg-10 custom-post-reply">
+                                <p>Reply from <strong><span ng-bind="replyInfo.username"></span></strong><br />
+                                   <span ng-bind="replyInfo.created | date:'MMMM dd yyyy'"></span><br />
+                                   <span ng-bind="replyInfo.post"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> <!-- end posts -->
+        </div>
+    </body>
+</html>
