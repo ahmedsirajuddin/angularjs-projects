@@ -29,11 +29,6 @@ angular.module("openSourceApp", [])
 
                     TabService.switchTab(currentTab);
                 }
-                /*self.tab = "home";
-                self.switchTab = function(currentTab) {
-                    self.tab = currentTab;
-                    alert(self.tab);
-                    };*/
         }])
 
         .factory("TabService", [function() {
